@@ -64,6 +64,7 @@ table {
     float above the app.
   */
   isolation: isolate;
+
 }
 
 html {
@@ -71,6 +72,15 @@ html {
     Silence the warning about missing Reach Dialog styles
   */
   --reach-dialog: 1;
+
+
+  --phone: 37.5rem;
+  --tablet: 59.375rem;
+  --desktop: 81.25rem;
+  --algo: red;
+  --primary: hsl(340deg 65% 47% /60%);
+  --secondary: hsl(240deg 60% 63%/60%);
+  
 }
 
 html, body, #root {
