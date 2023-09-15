@@ -9,12 +9,26 @@ import Spacer from '../Spacer';
 import ShoeSidebar from '../ShoeSidebar';
 import ShoeGrid from '../ShoeGrid';
 
+const Bread = () => (
+  <Breadcrumbs>
+    <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
+    <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
+    <Breadcrumbs.Crumb href="/sale/shoes">
+      Shoes
+    </Breadcrumbs.Crumb>
+  </Breadcrumbs>
+)
 const ShoeIndex = ({ sortId, setSortId }) => {
   return (
     <Wrapper>
       <MainColumn>
         <Header>
-          <Title>Running</Title>
+          <div>
+            <BreadMovil >
+              <Bread />
+            </BreadMovil>
+            <Title>Running</Title>
+          </div>
           <Select
             label="Sort"
             value={sortId}
@@ -28,13 +42,7 @@ const ShoeIndex = ({ sortId, setSortId }) => {
         <ShoeGrid />
       </MainColumn>
       <LeftColumn>
-        <Breadcrumbs>
-          <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale/shoes">
-            Shoes
-          </Breadcrumbs.Crumb>
-        </Breadcrumbs>
+        <Bread />
         <Spacer size={42} />
         <ShoeSidebar />
       </LeftColumn>
@@ -47,15 +55,29 @@ const Wrapper = styled.div`
   flex-direction: row-reverse;
   align-items: baseline;
   gap: 32px;
+
+  
+`;
+const BreadMovil = styled.div`
+// background-color: #f00;
+  display: none;
+  align-self: flex-start;
+  @media (max-width: ${BRAKEPOINTS.phone}) {
+    display: block;
+    margin-top: -30px;
+  }
+  @media (max-width: ${BRAKEPOINTS.tablet}) {
+    display: block;
+    margin-top: -30px;
+    
+  }
 `;
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
 
   @media (max-width: ${BRAKEPOINTS.tablet}) {
-    position: absolute;
-    left: 32px;
-    margin-top: -20px;
+    display: none;
   }
 `;
 
@@ -67,6 +89,10 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+
+  @media (max-width: ${BRAKEPOINTS.tablet}) {
+    align-items: center;
+  }
 `;
 
 const Title = styled.h2`

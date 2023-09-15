@@ -13,19 +13,18 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   }
 
   return (
-    <DialogOverlay
-        style={{ background: "rgba(255, 255, 255, 0.5)", position: "absolute", width: '100%', height: '100%', top: 0 }}
+    <Overlay
         isOpen={isOpen}
         onDismiss={onDismiss}
         >
         <DialogContent
         aria-label="Mobile menu"
-          style={{ padding: '44px 32px 32px 32px', backdropFilter: 'blur(8px)',borderRadius: '0 0 24px 24px', background: "linear-gradient(-50deg, var(--primary), var(--secondary))", boxShadow: "0px 10px 50px hsla(0, 0%, 0%, 0.33)" }}
+          style={{ height: '100%', padding: '44px 32px 32px 32px', backdropFilter: 'blur(8px)',borderRadius: '4px 0 0 4px', background: "linear-gradient(-50deg, var(--primary), var(--secondary))", boxShadow: "0px 10px 50px hsla(0, 0%, 0%, 0.33)" }}
         >
-        <div>
+        <ContentWrapper>
           <UnstyledButton style={{margin: '12px 12px 12px auto'}} onClick={onDismiss}>
             <VisuallyHidden>Close</VisuallyHidden>
-            <Icon id="close" strokeWidth={4} aria-hidden />
+            <Icon id="close" strokeWidth={4} color={'white'} aria-hidden />
           </UnstyledButton>
           <Nav>
             <a href="/sale">Sale</a>
@@ -40,20 +39,35 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
             <a href="/privacy">Privacy Policy</a>
             <a href="/contact">Contact Us</a>
           </Footer>
-        </div>
+        </ContentWrapper>
       </DialogContent>
-    </DialogOverlay>
+    </Overlay>
     
   );
 };
+const Overlay = styled(DialogOverlay)`
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  width: clamp(320px,80vw, 360px);
+  max-width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+`;
 
+const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+`;
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 3px;
   text-align: right;
   font-size: 1.5rem;
-  margin-right: 32px;
+  margin-right: 18px;
   a {
     text-decoration: none;
     color: #fff;
@@ -64,8 +78,10 @@ const Footer = styled.footer`
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 32px;
+
   a {
     color: #333;
+    text-shadow: 0px 0px 9px #fff;
   }
 `;
 
